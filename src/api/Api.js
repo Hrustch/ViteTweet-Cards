@@ -22,3 +22,13 @@ export const handleUnsubscribe = async (id, followers)=>{
         followers: followers - 1,
     })
 }
+
+export const getTweetsById = async (id, page)=>{
+    const data = await axios.get(`users/${id}/tweets`, {
+        params:{
+            page: page,
+            limit: 10
+        }
+    })
+    return data.data;
+}

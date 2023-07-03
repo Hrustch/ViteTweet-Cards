@@ -2,6 +2,7 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 .Card {
+   position: relative;
    height: 460px;
    width: 380px;
    border-radius: 20px; 
@@ -54,7 +55,7 @@ body {
 }
 
 .Avatar{
-    border-radius: inherit;
+    border-radius: 80px;
     width: 80px;
     height: 80px;
 }
@@ -95,4 +96,17 @@ body {
 
 .FollowBtn{    
     background: #5CD3A8;
+}
+
+.Link{
+    display: inline-block;
+}
+
+.Logo{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 76px;
+    height: 22px;
+    fill: rgba(255, 255, 255, 0.3);
 }

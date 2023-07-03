@@ -1,0 +1,19 @@
+
+.Post{
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    border-radius: 20px; 
+    background: rgb(71,28,169);
+    background: linear-gradient(16deg, rgba(71,28,169,1) 100%, rgba(87,54,163,1) 100%, rgba(75,42,153,1) 100%);
+    
+}
+
+.UserName{
+    text-align: left;
+    color: #EBD8FF;
+    font-size: 20px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

@@ -1,80 +1,18 @@
-import { useEffect, useState } from "react";
-import { getUsers, handleSubscribe, handleUnsubscribe } from "./api/Api";
-import CardGallary from "./components/CardGallry/CardGallary";
+import { Routes, Route, Navigate } from "react-router-dom";
+import HomePage from "./pages/HomePage/HomePage";
+import Tweets from "./pages/Tweets/Tweets";
 
+// import { Link } from "react-router-dom/dist";
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const [isHidden, setIsHidden] = useState(false);
-  const [page, setPage] = useState(1);
-  const [subs, setSubs] = useState(()=>(JSON.parse(localStorage.getItem('Followers'))) || [])
-  localStorage.setItem('Followers', JSON.stringify(subs))
-
-
-  useEffect(() => {
-    getUsers(1)
-      .then((data) => {
-        setUsers(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-
-
-  function loadPage() {
-    getUsers(page + 1)
-      .then((data) => {
-        if (data.length < 4) {
-          setIsHidden(true);
-        }
-        setUsers([...users, ...data]);
-      })
-      .catch((err) => console.log(err))
-      .finally(setPage(page + 1));
-  }
-
-
-  function handleFollow (id, followers, name){
-    if(!subs.find((follower)=>(follower.name === name))){
-      handleSubscribe(id, followers)
-      .then(()=>{
-        const newState = users.map((user)=>{
-          if (user.id === id){
-            setSubs([...subs, {name: user.name, id: user.id, sub: true}])
-            localStorage.setItem('Followers', JSON.stringify(subs))
-            return {...user, followers: followers + 1}
-          }
-          return user;
-        })      
-        setUsers([...newState])  
-      })
-      .catch(err=>console.log(err))
-    }
-    else{      
-      handleUnsubscribe(id, followers)
-      .then(()=>{
-        const newState = users.map((user)=>{
-          if (user.id === id){
-            setSubs([...subs.filter((follower)=>(follower.name !== name))])
-            localStorage.setItem('Followers', JSON.stringify(subs))
-            return {...user, followers: followers - 1}
-          }
-          return user;
-        })
-        setUsers([...newState])
-      })
-    }
-  }
-
-
-  if (!users) {
-    return;
-  }
   return (
     <>
-      <CardGallary users={users} button={isHidden} load={loadPage} funcFollow={handleFollow}/>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/user/:userName/:userId/tweets" element={<Tweets />} />
+
+        <Route path="*" element={<Navigate to={"/"} />} />
+      </Routes>
     </>
   );
 }
