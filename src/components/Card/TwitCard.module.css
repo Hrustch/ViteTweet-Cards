@@ -1,7 +1,6 @@
-body{
+body {
     font-family: 'Montserrat', sans-serif;
 }
-
 .Card {
    height: 460px;
    width: 380px;
@@ -69,4 +68,31 @@ body{
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
+}
+
+
+.Btn{
+    margin: auto;
+    display: flex;
+
+    color: var(--landing-button-text-color, #373737);
+    font-size: 18px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+
+    padding: 14px 28px;
+    border-radius: 10.311px;
+
+    background: #ebd8ff;
+
+    border: none;
+    cursor: pointer;
+}
+
+
+.FollowBtn{    
+    background: #5CD3A8;
 }

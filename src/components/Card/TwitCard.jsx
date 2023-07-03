@@ -1,26 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import css from './TwitCard.module.css'
 import img from '../../assets/picture1.png'
-import { handleSubscribe } from '../../api/Api'
 
 const TwitCard = ({user, funcFollow}) => {
-  const [isFollowed, setIsFollowed] = useState(()=>(JSON.parse(localStorage.getItem('Followers')).find((follower) => follower.name === user.name) ? true : false));
-  console.log(isFollowed)
-/*   useEffect(() => {
-    const followers = JSON.parse(localStorage.getItem('Followers')).find((follower) => follower.name === user.name).sub;
-    if(followers){
-      console.log(followers)
-    }
-  }, []); */
-
+  const isFollowed = JSON.parse(localStorage.getItem('Followers')).find((follower) => follower.name === user.name) ? true : false
+  /* console.log(JSON.parse(localStorage.getItem('Followers'))) */
   function handleFollow(){
     funcFollow(user.id, user.followers, user.name)
-    if(isFollowed){
-      setIsFollowed(false)
-    }
-    else{
-      setIsFollowed(true)
-    }
   }
 
   return (
@@ -38,8 +24,7 @@ const TwitCard = ({user, funcFollow}) => {
             <p>{user.tweets} TWEETS</p>
             <p>{user.followers} FOLLOWERS</p>
         </div>
-        <p>{`${isFollowed}`}</p>
-        <button onClick={()=>{handleFollow()}}>Follow</button>
+        <button className={`${isFollowed && css.FollowBtn} ${css.Btn}`} onClick={()=>{handleFollow()}} type='button'>{isFollowed ? `Unfollow` : `Follow`} </button>
     </div>
   )
 }

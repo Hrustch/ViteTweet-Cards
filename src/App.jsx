@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TwitCard from "./components/Card/TwitCard";
 import { getUsers, handleSubscribe, handleUnsubscribe } from "./api/Api";
 import CardGallary from "./components/CardGallry/CardGallary";
 
@@ -9,6 +8,8 @@ function App() {
   const [isHidden, setIsHidden] = useState(false);
   const [page, setPage] = useState(1);
   const [subs, setSubs] = useState(()=>(JSON.parse(localStorage.getItem('Followers'))) || [])
+  localStorage.setItem('Followers', JSON.stringify(subs))
+
 
   useEffect(() => {
     getUsers(1)
@@ -20,9 +21,6 @@ function App() {
       });
   }, []);
 
-  useEffect(()=>{
-    localStorage.setItem('Followers', JSON.stringify(subs))
-  },[subs])
 
 
   function loadPage() {
@@ -45,6 +43,7 @@ function App() {
         const newState = users.map((user)=>{
           if (user.id === id){
             setSubs([...subs, {name: user.name, id: user.id, sub: true}])
+            localStorage.setItem('Followers', JSON.stringify(subs))
             return {...user, followers: followers + 1}
           }
           return user;
@@ -53,12 +52,13 @@ function App() {
       })
       .catch(err=>console.log(err))
     }
-    else{
+    else{      
       handleUnsubscribe(id, followers)
       .then(()=>{
         const newState = users.map((user)=>{
           if (user.id === id){
             setSubs([...subs.filter((follower)=>(follower.name !== name))])
+            localStorage.setItem('Followers', JSON.stringify(subs))
             return {...user, followers: followers - 1}
           }
           return user;
