@@ -1,0 +1,9 @@
+.CardGallary{
+    list-style: none;
+    display: flex;
+    max-width: 800px;
+    margin: 0;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+}
