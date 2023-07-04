@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/user/:userName/:userId/tweets" element={<Tweets />} />
 
-        <Route path="*" element={<Navigate to={"/"} />} />
+        {/* <Route path="*" element={<Navigate to={"/"} />} /> */}
       </Routes>
     </>
   );
