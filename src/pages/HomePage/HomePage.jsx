@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getUsers, handleSubscribe, handleUnsubscribe } from "../../api/Api";
 import CardGallary from "../../components/CardGallry/CardGallary";
 import Select from "react-select";
-
+import css from './HomePage.module.css'
 
 function HomePage() {
   const [users, setUsers] = useState([]);
@@ -108,14 +108,14 @@ function HomePage() {
   }
   return (
     <>
-    <div>
-    <div style={{width: '150px', marginBottom: '24px'}}>
-    <Select onChange={handleSelector} options={options} 
-      styles={{control: (baseStyles) => ({...baseStyles})}}
-    />
-    </div>
-      <CardGallary users={filteredUsers()} button={isHidden} load={loadPage} funcFollow={handleFollow}/>
+    <div className={css.PageBody}>
+      <div style={{width: '150px', marginBottom: '24px'}}>
+        <Select onChange={handleSelector} options={options} 
+          styles={{control: (baseStyles) => ({...baseStyles})}}
+        />
       </div>
+      <CardGallary users={filteredUsers()} button={isHidden} load={loadPage} funcFollow={handleFollow}/>
+    </div>
     </> 
   );
 }
