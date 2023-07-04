@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUsers, handleSubscribe, handleUnsubscribe } from "../../api/Api";
 import CardGallary from "../../components/CardGallry/CardGallary";
+import Select from "react-select";
 
 
 function HomePage() {
@@ -8,7 +9,15 @@ function HomePage() {
   const [isHidden, setIsHidden] = useState(false);
   const [page, setPage] = useState(1);
   const [subs, setSubs] = useState(()=>(JSON.parse(localStorage.getItem('Followers'))) || [])
+  const [filter, setFilter] = useState('all')
+  const options = [
+    { value: "all", label: "Show all" },
+    { value: "follow", label: "Follow" },
+    { value: "followings", label: "Followings" },
+  ];
   localStorage.setItem('Followers', JSON.stringify(subs))
+  
+
 
 
   useEffect(() => {
@@ -23,6 +32,7 @@ function HomePage() {
 
 
 
+
   function loadPage() {
     getUsers(page + 1)
       .then((data) => {
@@ -34,6 +44,26 @@ function HomePage() {
       .catch((err) => console.log(err))
       .finally(setPage(page + 1));
   }
+
+
+  function handleSelector (event){
+    setFilter(event.value);
+  };
+
+  function filteredUsers (){
+    const store = JSON.parse(localStorage.getItem('Followers'))
+    if (filter === "follow") {
+      return users.filter((user) =>
+      store.find((follower) => follower.name === user.name) ? false : true
+      );
+    }
+    if (filter === "followings") {
+      return users.filter((user) =>
+      store.find((follower) => follower.name === user.name) ? true : false
+      );
+    }
+    return users;
+  };
 
 
   function handleFollow (id, followers, name){
@@ -69,13 +99,24 @@ function HomePage() {
   }
 
 
+
+
+
+
   if (!users) {
     return;
   }
   return (
     <>
-      <CardGallary users={users} button={isHidden} load={loadPage} funcFollow={handleFollow}/>
-    </>
+    <div>
+    <div style={{width: '150px', marginBottom: '24px'}}>
+    <Select onChange={handleSelector} options={options} 
+      styles={{control: (baseStyles) => ({...baseStyles})}}
+    />
+    </div>
+      <CardGallary users={filteredUsers()} button={isHidden} load={loadPage} funcFollow={handleFollow}/>
+      </div>
+    </> 
   );
 }
 

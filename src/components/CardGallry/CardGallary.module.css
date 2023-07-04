@@ -2,8 +2,26 @@
     list-style: none;
     display: flex;
     max-width: 800px;
-    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
     justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+.LoadBtn{
+    color: var(--landing-button-text-color, #373737);
+    font-size: 18px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    padding: 14px 28px;
+    border-radius: 10.311px;
+
+    background: #ebd8ff;
+
+    border: none;
+    cursor: pointer;
 }

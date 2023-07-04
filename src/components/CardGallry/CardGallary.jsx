@@ -16,7 +16,7 @@ const CardGallary = ({ users, button, load, funcFollow}) => {
       {button ? (
         <p>Це все!</p>
       ) : (
-        <button
+        <button className={css.LoadBtn}
           onClick={() => {
             load();
           }}
