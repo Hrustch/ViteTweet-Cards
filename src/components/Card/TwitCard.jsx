@@ -23,8 +23,8 @@ const TwitCard = ({user, funcFollow}) => {
         </div>
 
         <div className={css.Numbers}>
-            <p>{user.tweets} TWEETS</p>
-            <p>{user.followers} FOLLOWERS</p>
+            <p>{user.tweets.toLocaleString("en-US")} TWEETS</p>
+            <p>{user.followers.toLocaleString("en-US")} FOLLOWERS</p>
         </div>
         <button className={`${isFollowed && css.FollowBtn} ${css.Btn}`} onClick={()=>{handleFollow()}} type='button'>{isFollowed ? `Unfollow` : `Follow`} </button>
     </div>
