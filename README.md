@@ -10,14 +10,17 @@ Dependencies:
 - react-select
 
   This project uses Mokapi.io as outside data storage
+  
     endpoints:
+  
   .mockapi.io/users - all users
+  
   .mockapi.io/users/(userId)/tweets - all user's tweets
 
     This project uses API requests to get and draw user's cards with
   their numbers of tweets and followers.
   
-    We can "subscribe" on user to increase his ammount of followers by 1
+    We can "subscribe" on user to increase his amount of followers by 1
   and change "follow" button state on "followed". Redraw happends ONLY on
   serwer success response, otherwise it's waiting.
   
@@ -29,5 +32,5 @@ Dependencies:
   where site forming several "post" from /users/(userId)/tweets request.
   
     I've implemented primitive filter selector wich one filters existing on page users on followed/unfollowed
-  and unfortunatly due the server small functionality i'm not be able tor send furthe speciffic requests
+  and unfortunatly due the server small functionality i'm not able to send further speciffic requests
   to get only followed or unfollowed users. 
