@@ -19,7 +19,7 @@ Dependencies:
   
     We can "subscribe" on user to increase his ammount of followers by 1
   and change "follow" button state on "followed". Redraw happends ONLY on
-  serwer succses response, otherwise it's waiting.
+  serwer success response, otherwise it's waiting.
   
     We send the request depending on whether the user is in our subscriptions.
   Due to leack of server abilities, to simulate subscribers database - we are using localstorage.
