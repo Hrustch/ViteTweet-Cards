@@ -1,6 +1,7 @@
 # ViteTweet-Cards project, created by Hrustch.
 
 (HTML/CSS, JS, React)
+
 Dependencies:
 - axios
 - react
